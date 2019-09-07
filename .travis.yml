@@ -6,13 +6,16 @@ branches:
   - master
 script:
 - npm run build
+before_deploy:
+  - RELEASE_NAME="$(node release-name.js)"
+  - echo $RELEASE_NAME
 deploy:
   provider: releases
+  name: $RELEASE_NAME
   api_key:
     secure: sPiYzizwz44zf9RcTXKCrXtc0PVSFuGCxameS0WKVOwWEPXLJq1/MHNvqWFkDPR34UIL8Bq4lB4I/js8VG8TJnd54/FmhtoigpvLImxvnXSzQWdxjlHxMekiyDGR4XLQslnsaK7IMzqnAFy5NVKfMGxBw+cOutxTdh7BFOFNBv3L1C0yOqR7CFSewa0fPOk1OKFsbjjfJEpm9Iin6oRJHlCzeU2XY7bOTUlMDp44q9q8QwXpwhe3WS4C64PPyG6QetygHlcAKYwWugLI9eR1SC0hDNYPjGc5rlo6qJF45U9+NyrnN+gP4acMDfY+H03Ld2swBkQtzNqGhn1MMPDftH0cPrTuPgV0Akai2/M91KQPchO7YSCx3Ygfjs7JBKGuZlPaPcduwND8soP1PAkp31RW7xW0QQLgbgKlKzt8gO8ZT2ULwyYwIjFwpr3+ng3H18+ntVkRunvMoU1jsbYPhZU/dE2XVkkTX0NGXaMcbdTSTGp4SWv/jmFY13PApDlx0aYvy59183DkBis9Q/ROQKBKt6OCckIvt9PkLaW4t4nJBTu7pie6AITdsgTuEsURDA4Pu/QMfWJfDOp7WF4rASE6ySIYBNT7rnVnpIlIccwPIsE19hyrM0kv+NyFAN/25pl7B23rwrrlkoboucIZBSkfgrRkodBlc69BR2iPTc0=
-  file: "dist/out.bin"
+  file: "dist/out.exe"
   skip_cleanup: true
-  draft: true
+  prerelease: true
   on:
-    repo: tabarra/test-txadmin_cicd
     tags: true
