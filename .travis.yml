@@ -19,3 +19,4 @@ deploy:
   prerelease: true
   on:
     tags: true
+    branch: master
