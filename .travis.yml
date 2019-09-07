@@ -5,7 +5,8 @@ node_js:
 script:
   - npm run build
 before_deploy:
-  - RELEASE_NAME="$(node release-name.js)"
+  # - RELEASE_NAME="$(node release-name.js)"
+  - RELEASE_NAME="$(git describe --tags)"
   - echo $RELEASE_NAME
 deploy:
   provider: releases
